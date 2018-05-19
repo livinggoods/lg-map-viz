@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <Mapbox :access-token="accessToken" :map-options="mapOptions">
+        <Mapbox @map-load="mapLoaded" :access-token="accessToken" :map-options="mapOptions" :layers="layers">
 
         </Mapbox>
     </div>
@@ -11,16 +11,23 @@
 
     export default {
         name: 'LgMapViz',
-        data () {
+        data() {
             return {}
         },
         props: [
             'accessToken',
-            'mapOptions'
+            'mapOptions',
+            'layers'
         ],
-        methods:{
-            mapLoaded:function () {
-
+        methods: {
+            /**
+             * @desc This method adds layers passed to the module as props onto the map. This has to happen after the map is loaded
+             * @param 1 map - instance of the loaded map.
+             */
+            mapLoaded: function (map) {
+                this.layers.forEach(function (layer) {
+                    map.addLayer(layer);
+                });
             }
         },
         components: {
