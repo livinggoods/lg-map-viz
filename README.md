@@ -7,6 +7,9 @@ A module to visualize data in layers on a map
 
   `npm install lg-map-viz`
 
+## Requirements
+- Mapbox Api Key
+- 
 ## Usage
 
 ### Vue JS
